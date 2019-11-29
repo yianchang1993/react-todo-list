@@ -6,6 +6,7 @@ import TodoInput from "./components/todoInput";
 import TodoList from "./components/todoList";
 import TodoItem from "./components/todoItem";
 
+//showing vscode github setup
 function App() {
   return (
     <div className="App">
