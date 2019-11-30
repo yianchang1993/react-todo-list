@@ -5,24 +5,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import TodoInput from "./components/todoInput";
 import TodoList from "./components/todoList";
 import TodoItem from "./components/todoItem";
-import todoList from "./components/todoList";
 
 //showing vscode github setup
 class App extends React.Component {
   state = {
-    items: [
-      { id: 1, title: "wake up" },
-      { id: 2, title: "make breakfast" }
-    ],
+    items: [],
     id: uuid(),
     item: "",
     editItem: false
   };
   handleChange = e => {
-    console.log("handleChage");
+    this.setState({
+      item: e.target.value
+      //object data
+    });
   };
-  handleSumit = e => {
-    console.log("handle sumit");
+  handleSubmit = e => {
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item
+    };
+    const updatedItem = [...this.state.items, newItem];
+    this.setState({
+      items: updatedItem,
+      item: "",
+      id: uuid(),
+      editItem: false
+    });
   };
   clearList = () => {
     console.log("handle clear");
@@ -45,7 +55,7 @@ class App extends React.Component {
               <TodoInput
                 item={this.state.item}
                 handleChange={this.handleChange}
-                handleSumit={this.handleSumit}
+                handleSubmit={this.handleSubmit}
                 editItem={this.state.editItem}
               />
               <TodoList
