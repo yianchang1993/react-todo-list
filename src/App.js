@@ -35,13 +35,25 @@ class App extends React.Component {
     });
   };
   clearList = () => {
-    console.log("handle clear");
+    this.setState({
+      items: []
+    });
   };
   handleDelete = id => {
-    console.log(`handle delete ${id}`);
+    const filterItems = this.state.items.filter(i => i.id !== id);
+    this.setState({
+      items: filterItems
+    });
   };
   handleEdit = id => {
-    console.log(`handle edit ${id}`);
+    const filterItems = this.state.items.filter(i => i.id !== id);
+    const selectedItems = this.state.items.find(i => i.id === id);
+    this.setState({
+      items: filterItems,
+      item: selectedItems.title,
+      id: id,
+      editItem: true
+    });
   };
   render() {
     console.log(this.state);
